@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.bak
+.pytest_cache/
+build/
+dist/
+
+# Environments and editors
+.venv/
+venv/
+.idea/
+.vscode/
+.DS_Store
+
+# Model weights and training artifacts
+pretrain/
+checkpoints/
+results/
+outputs/
+*.pth
+*.pkl
+*.pt
+
+# Local datasets
+/dataset/
+/datasets/
+/LAU-GRES/
+
+# Logs and temporary files
+*.log
+tmp/
