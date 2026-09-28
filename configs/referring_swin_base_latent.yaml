@@ -1,0 +1,15 @@
+_BASE_: referring_swin_base.yaml
+
+MODEL:
+  MASK_FORMER:
+    # 21 original LEAD queries + 6-token and 12-token latent expressions.
+    NUM_OBJECT_QUERIES: 39
+    LATENT_ENABLED: True
+    LATENT_NUM_TOKENS: [6, 12]
+    LATENT_DROP_PROBS: [0.2, 0.15]
+    LATENT_TEMPERATURE: 0.07
+    # All three layers attend to 1 subject + 30x30 visual + 39 text tokens.
+    LATENT_ENCODER_FFN_DIM: 1024
+    LATENT_ENCODER_DROPOUT: 0.1
+    LATENT_POOL_SIZE: 30
+    LATENT_VC_TOKENS: 100

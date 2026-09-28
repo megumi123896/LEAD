@@ -1,0 +1,39 @@
+_BASE_: referring_swin_base_latent.yaml
+
+# LAU-GRES is the user's eight-category GRefCOCO-style dataset.
+DATASETS:
+  TRAIN: ("lau_gres_train",)
+  TEST: ("lau_gres_val",)
+
+DATALOADER:
+  # Keep no-target expressions and use the stable setting from the previous run.
+  FILTER_EMPTY_ANNOTATIONS: False
+  NUM_WORKERS: 0
+
+MODEL:
+  SEM_SEG_HEAD:
+    NUM_CLASSES: 8
+  WEIGHTS: "pretrain/swin_base_patch4_window12_384_22k.pkl"
+
+REFERRING:
+  BERT_TYPE: "pretrain/bert"
+
+SOLVER:
+  AMP:
+    ENABLED: True
+  # Match the previous LEAD schedule with a global batch of 8.
+  IMS_PER_BATCH: 8
+  # Keep batch 8, but use the safer batch-4 learning rate for the newly
+  # initialized Latent branches.
+  BASE_LR: 4.166666666666667e-06
+  COS_END_LR: 4.166666666666667e-08
+  # Preserve the previous approximately 73-epoch total training duration.
+  MAX_ITER: 130025
+  WARMUP_ITERS: 7
+  # 14254 training expressions / batch 8 * 8 epochs = 14254 iterations.
+  CHECKPOINT_PERIOD: 14254
+
+TEST:
+  EVAL_PERIOD: 14254
+
+OUTPUT_DIR: "results/lau_gres_8cls"

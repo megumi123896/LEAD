@@ -1,0 +1,15 @@
+_BASE_: referring_swin_base_latent_lau_gres_train.yaml
+
+# LEAD reads TRAIN metadata even in eval-only mode; no training is performed.
+DATASETS:
+  TRAIN: ("lau_gres_train",)
+  TEST: ("lau_gres_test",)
+
+MODEL:
+  WEIGHTS: "results/lau_gres_8cls/model_final.pth"
+
+REFERRING:
+  BERT_TYPE: "pretrain/bert"
+
+# Keep evaluation artifacts separate from checkpoints and training logs.
+OUTPUT_DIR: "results/lau_gres_8cls/evaluation"
