@@ -11,6 +11,8 @@
 ![Framework](https://img.shields.io/badge/Framework-PyTorch-ee4c2c?style=flat-square&logo=pytorch&logoColor=white)
 ![Encoders](https://img.shields.io/badge/Encoders-Swin--B_%2B_BERT-7c3aed?style=flat-square)
 
+**[Dataset on Hugging Face](https://huggingface.co/datasets/Zhengku1n/LAU-GRES/tree/main)** &nbsp;·&nbsp; **[Supplementary Material (PDF)](assets/supplementary/ICASSP2027_Supplement.pdf)** &nbsp;·&nbsp; **[Media Supplement (ZIP)](assets/supplementary/LEAD_Media_Supplement.zip?raw=true)**
+
 [Dataset](#dataset) &nbsp;·&nbsp; [Overview](#overview) &nbsp;·&nbsp; [Method](#method) &nbsp;·&nbsp; [Results](#results) &nbsp;·&nbsp; [Visualizations](#visualizations) &nbsp;·&nbsp; [Getting Started](#getting-started)
 
 </div>
@@ -37,7 +39,7 @@ The manuscript describes **13,369 image-expression-mask triplets** spanning **ei
 | Visual challenges | Small objects, crowded scenes, oblique viewpoints, and nighttime illumination |
 | Annotation pipeline | SAM 2 masks, multimodal expression generation, and manual refinement |
 
-Dataset files and trained checkpoints are not included in this code repository. See [dataset preparation](#2-prepare-lau-gres) for the expected data layout.
+**Download LAU-GRES from [Hugging Face](https://huggingface.co/datasets/Zhengku1n/LAU-GRES/tree/main).** See [dataset preparation](#2-prepare-lau-gres) for the expected data layout. Trained checkpoints are not included in this code repository.
 
 ## Overview
 
@@ -186,6 +188,11 @@ The concept figure contrasts a conventional joint representation with latent exp
 
 </details>
 
+## Supplementary Materials
+
+- **[Supplementary Material (PDF)](assets/supplementary/ICASSP2027_Supplement.pdf)** — Dataset construction details, experimental protocols, training objectives, and additional analyses.
+- **[Media Supplement (ZIP)](assets/supplementary/LEAD_Media_Supplement.zip?raw=true)** — Additional visual examples with an accompanying manifest and README.
+
 ## Getting Started
 
 ### 1. Installation
@@ -228,7 +235,7 @@ The build requires a compatible CUDA toolkit and C++ compiler. The commands abov
 
 ### 2. Prepare LAU-GRES
 
-Place the annotations and images next to the repository:
+Download the dataset from **[LAU-GRES on Hugging Face](https://huggingface.co/datasets/Zhengku1n/LAU-GRES/tree/main)**, then arrange the annotations and images next to the repository:
 
 ```text
 workspace/
@@ -303,7 +310,9 @@ The default [evaluation configuration](configs/referring_swin_base_latent_lau_gr
 
 ```text
 LEAD/
-├── assets/figures/                  # Paper figures for this README
+├── assets/
+│   ├── figures/                    # Paper figures for this README
+│   └── supplementary/              # Supplementary PDF and media archive
 ├── configs/                        # Model, training, and evaluation configurations
 ├── gres_model/
 │   ├── data/                       # Dataset loaders, registration, and mappers
